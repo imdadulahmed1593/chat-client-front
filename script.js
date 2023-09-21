@@ -71,17 +71,14 @@ $(() => {
 
   function simulateIncomingMessages() {
     setTimeout(() => {
-      $.get(
-        'http://cw-api.eu-west-3.elasticbeanstalk.com/quotes/random',
-        (data) => {
-          const msg = new Message(data.result.text, false, Date.now());
-          // REMOVE-START
-          postMessage(msg);
-          // REMOVE-END
-          showMessage(msg);
-          scrollToBottom();
-        }
-      );
+      $.get('https://api.quotable.io/random', (data) => {
+        const msg = new Message(data.content, false, Date.now());
+        // REMOVE-START
+        postMessage(msg);
+        // REMOVE-END
+        showMessage(msg);
+        scrollToBottom();
+      });
     }, genRandomMs());
   }
 
